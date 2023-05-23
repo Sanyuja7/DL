@@ -1,0 +1,42 @@
+The code you provided trains a neural network model using the Boston Housing dataset and evaluates its performance on the test data. Here's a breakdown of the code:
+
+1. Loading the Boston Housing dataset:
+   - The `fetch_openml` function from scikit-learn is used to load the Boston Housing dataset.
+   - The dataset is assigned to the `boston_dataset` variable.
+
+2. Creating a DataFrame from the dataset:
+   - The data from `boston_dataset` is used to create a DataFrame named `df`.
+   - The feature names are set as column names of the DataFrame.
+   - The target variable from the dataset is added as a new column named 'MEDV'.
+
+3. Splitting the data into training and test sets:
+   - The feature matrix `X` is created by selecting all columns except the target variable column ('MEDV').
+   - The target variable array `y` is created by selecting only the column 'MEDV'.
+   - The `train_test_split` function from scikit-learn is used to split the data into training and test sets.
+   - The training set is assigned to `X_train` and `y_train`, while the test set is assigned to `X_test` and `y_test`.
+   - The test size is set to 30% of the data, and a random state of 123 is used for reproducibility.
+
+4. Preprocessing the data:
+   - The `MinMaxScaler` from scikit-learn is used to scale the feature data.
+   - The scaler is fit on the training data (`X_train`) to learn the scaling parameters.
+   - The training and test sets are then transformed using the scaler to ensure the same scaling is applied to both sets.
+
+5. Building the neural network model:
+   - The Keras library is used to create a sequential model named `model`.
+   - Three dense layers are added to the model, with 128, 64, and 1 neurons, respectively.
+   - The first dense layer specifies the input shape as (13, ) to match the number of features in the data.
+   - The activation functions used are 'relu' for the first two layers and 'linear' for the output layer.
+   - The model's architecture is summarized using the `summary()` method.
+
+6. Compiling and training the model:
+   - The model is compiled with the Adam optimizer, mean squared error (MSE) loss, and mean absolute error (MAE) metric.
+   - The `fit` function is used to train the model on the training data.
+   - The training is performed for 100 epochs with a validation split of 5% to monitor the model's performance during training.
+   - The verbose argument is set to 1 to display training progress.
+
+7. Evaluating the model on the test data:
+   - The `evaluate` method is used to compute the MSE and MAE of the trained model on the test data.
+   - The MSE is assigned to `mse_nn` and the MAE is assigned to `mae_nn`.
+   - The values are printed to the console.
+
+Note that the code assumes you have the necessary libraries (scikit-learn, pandas, Keras) installed and imported properly.
